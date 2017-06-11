@@ -1,8 +1,11 @@
-name: "my-website"
+name: "Meu Site"
+output_dir: "."
+output:
+  html_document:
+    theme: journal
 navbar:
-  title: "My Website"
   left:
-    - text: "Home"
-      href: index.html
-    - text: "About"
-      href: about.html
+   - text: "Segunda Atividade"
+     href: index.html
+   - text: "Primeira Atividade"
+     href: about.html

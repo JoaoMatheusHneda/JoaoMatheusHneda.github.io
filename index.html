@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Chevrolet S-10 X Fox Ranger" />
+
+
+<title>Análise Comparativa entre Carros</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 61px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+
+.section h2 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h3 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h4 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h5 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+.section h6 {
+  padding-top: 66px;
+  margin-top: -66px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Segunda Atividade</a>
+</li>
+<li>
+  <a href="about.html">Primeira Atividade</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Análise Comparativa entre Carros</h1>
+<h4 class="author"><em>Chevrolet S-10 X Fox Ranger</em></h4>
+
+</div>
+
+
+<div id="contextualizacao" class="section level1">
+<h1><span class="header-section-number">1</span> Contextualização</h1>
+<ul>
+<li>Na sociedade do século XXI é essencial a mobilidade, o usufruto do direito de ir e vir.</li>
+<li>Nesse contexto entram os automóveis.</li>
+<li>Com base nisso, será apresentado uma análise exploratória de dados comparando dois automóveis.</li>
+<li>Neste trabalho será aplicada à comparação dos seguintes automóveis:</li>
+<li>O S-10, da Chevrolet e o Ranger, da Fox; ambas picapes no mesmo estilo e faixa de preço.</li>
+<li>Os dados para estudo foram retirados da avaliação feita pelo site carrosnaweb.com.br/opiniao</li>
+<li>Objetivo: Qual carro é a melhor opção para o consumidor.</li>
+</ul>
+<div id="forma-de-estudo" class="section level2">
+<h2><span class="header-section-number">1.1</span> Forma de estudo</h2>
+<ul>
+<li>As variáveis utilizadas serão comparadas uma a uma de acordo com a nota dada pelos donos.</li>
+<li>A representação gráfica tem por objetivo simplificar ao máximo os resultados.</li>
+</ul>
+</div>
+</div>
+<div id="analise-dos-resultados" class="section level1">
+<h1><span class="header-section-number">2</span> Análise dos resultados</h1>
+<div class="figure">
+<img src="Rplot.png" />
+
+</div>
+<p><strong>Interpretação</strong> - Nos aspectos suspensão, motor, freios, desempenho, consumo e câmbio o carro Ranger supera o S-10 - Enquanto nas características instrumentos e custo-benefício o S-10 tem melhor média. - A média, assim como a maioria dos outros métodos, não é uma ferramenta 100% conclusiva. - Por esse motivo serão aqui expostas outras comparações visando uma melhor avaliação de acordo com os desejos do consumidor.</p>
+<div id="medidas-descritivas" class="section level2">
+<h2><span class="header-section-number">2.1</span> Medidas descritivas</h2>
+<ul>
+<li>Resumo das notas do carro Ranger</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Medida</th>
+<th align="center">Dono há menos de um ano</th>
+<th align="center">Dono há um ano</th>
+<th align="center">Dono há dois anos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Mínimo</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="center">Mediana</td>
+<td align="center">9</td>
+<td align="center">8</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center">Máximo</td>
+<td align="center">10</td>
+<td align="center">10</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">Média</td>
+<td align="center">8.58</td>
+<td align="center">6.76</td>
+<td align="center">5.5</td>
+</tr>
+<tr class="odd">
+<td align="center">Desv. Pad.</td>
+<td align="center">1.77</td>
+<td align="center">3.16</td>
+<td align="center">1.77</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Resumo das notas do carro S-10</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Medida</th>
+<th align="center">Dono há menos de um ano</th>
+<th align="center">Dono há um ano</th>
+<th align="center">Dono há dois anos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Mínimo</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td align="center">Mediana</td>
+<td align="center">8</td>
+<td align="center">8</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">Máximo</td>
+<td align="center">10</td>
+<td align="center">10</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">Média</td>
+<td align="center">7.49</td>
+<td align="center">7.32</td>
+<td align="center">7.75</td>
+</tr>
+<tr class="odd">
+<td align="center">Desv. Pad.</td>
+<td align="center">2.35</td>
+<td align="center">2.60</td>
+<td align="center">0.70</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Em uma interpretação à grosso modo da média, vemos que enquanto a média do Ranger cai conforme o tempo de uso a do S-10 mantém-se entre 7.48 e 7.75.</li>
+<li>A representação e exposição de medidas em forma de tabela, embora útil é muitas vezes de difícil compreensão para àqueles sem tanta prática.</li>
+<li>Por isso o gráfico para a tomada de decisão do consumidor entre os dois carros é a melhor ferramenta</li>
+</ul>
+</div>
+<div id="analise-ranger" class="section level2">
+<h2><span class="header-section-number">2.2</span> Análise Ranger</h2>
+<div class="figure">
+<img src="Rplot01.png" />
+
+</div>
+<ul>
+<li>Vê-se que nas características freios, instrumentos, motor, suspensão, câmbio e desempenho do Ranger uma boa parte das avaliações concentra-se nas maiores notas.</li>
+<li>Consumo e custo-benefício há uma maior dispersão nas notas dadas.</li>
+</ul>
+</div>
+<div id="analise-s-10" class="section level2">
+<h2><span class="header-section-number">2.3</span> Análise S-10</h2>
+<div class="figure">
+<img src="Rplot02.PNG" />
+
+</div>
+<ul>
+<li>Nas notas do veículo S-10 há uma distribuição bem maior que as do Ranger.</li>
+<li>Verifica-se que no Ranger a frequência de notas máximas é evidentemente superior às do S-1.</li>
+<li>Desse modo a avaliação da melhor escolha com base nos itens observados começa a tomar forma.</li>
+<li>Necessidade de novas avaliações gráficas</li>
+</ul>
+</div>
+</div>
+<div id="conclusao" class="section level1">
+<h1><span class="header-section-number">3</span> Conclusão</h1>
+<ul>
+<li>Vemos que o carro Ranger, mesmo com a divisão de data de fabricação possui em grande parte avaliações melhores que o S-10</li>
+<li>Diferença mais visível nos veículos de 2012, onde em 100% das notas médias o Ranger supera o S-10</li>
+<li>Com base na análise gráfica realizada é clara a superioridade do veículo Ranger sobre o S-10 dentro das características estudadas</li>
+<li>Logicamente que estes itens podem não ser os de interesse de determinado consumidor, o que levaria a outro estudo.</li>
+</ul>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

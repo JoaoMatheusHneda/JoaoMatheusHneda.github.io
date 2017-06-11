@@ -1,4 +1,84 @@
 ---
-title: "about"
+title: "Exercícios de Variáveis Aleatórias Bidimensionais"
+author: "João Matheus S. K. T. Hneda"
+date: "11 de Maio de 2017"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    code_folding: hide
 ---
-# About my website
+
+# Exercício 1)
+## Defeitos em carros
+
+Os carros de uma determinada marca podem apresentar dois tipos de defeitos até a
+primeira revisão: defeitos graves (que comprometem o funcionamento) e defeitos
+menores (tais como defeitos de acabamento, lâmpadas queimadas, etc). Suponha que
+costumam ocorrer até 2 defeitos graves e até 3 menores.
+
+Sejam X a v.a que representa o número de defeitos graves e Y a v.a. representando o
+número de defeitos menores de um carro sorteado ao acaso. A Tabela abaixo mostra
+como se distribuem as probabilidades conjuntas p (xi
+ , yj) para os diferentes valores de
+X e Y . Os valores das linhas e colunas correspondem aos valores de X e Y, respectivamente. Note que a soma de todas as probabilidades é igual a 1.
+Calcule no R a probabilidade de ocorrerem mais defeitos graves do que defeitos menores e também calcule a probabilidade de ocorrer o mesmo número de defeitos graves e defeitos menores.
+
+
+|  X↓ Y↑  | 0    | 1    | 2    |   3  | P(X=xi) |
+|---------|------|------|------|------|---------|
+| 0       | 0.20 | 0.20 | 0.14 | 0.06 | 0.60    |
+| 1       | 0.15 | 0.08 | 0.04 | 0.03 | 0.30    |
+| 2       | 0.05 | 0.02 | 0.02 | 0.01 | 0.10    |
+| P(Y=yj) | 0.40 | 0.30 | 0.20 | 0.10 | 1       |
+
+
+
+**Resolução:**
+
+```{r,echo=TRUE,eval=TRUE}
+x <- data.frame("0"=c(0.20,0.15,0.05),"1"=c(0.20,0.08,0.02),"2"=c(0.14,0.04,0.02),"3"=c(0.06,0.03,0.01))
+colnames(x) <- c("0","1","2","3")
+rownames(x) <- 0:2
+a <- x[2,1]+x[3,1]+x[3,2]
+b <- x[1,1]+x[2,2]+x[3,3]
+```
+
+A probabilidade de ocorrerem mais defeitos graves do que defeitos menores é igual a `r a` e a probabilidade de ocorrer o mesmo número de defeitos graves e defeitos menores corresponde a `r b`.
+______________________________________________________________________
+
+# Exercício 2)
+## Concurso Público
+
+Num concurso público para engenheiros, a prova de conhecimentos consta de uma parte
+teórica e uma parte prática, que devem ser feitas nesta ordem. Cada candidato só tem
+acesso ao enunciado da parte prática após ter terminado e entregado a parte teórica. O
+prazo máximo é de 2 horas para completar a prova como um todo. Sejam Y o tempo
+gasto para completar a parte teórica, e X o tempo total gasto para completar toda a
+prova, ambos medidos em horas.
+Admita que o vetor aleatório (X,Y) têm uma função de densidade conjunta dada pela
+expressão
+
+$$ f(x,y) = \begin{cases} \frac{1}{2}xy & \text{ se } 0 \leq y \leq x \leq 2 \\ 0 & \text{ c.c } \end{cases} $$
+
+![Os tempos da parte teórica (y) e total (x) para realizar a prova](http://i.imgur.com/Zjv8qYD.png)
+
+Sabendo disso calcule a probabilidade de que um determinado candidato
+termine a prova toda em no máximo 1 hora. 
+
+**Resolução:**
+Isto equivale a determinar a probabilidade
+na região R dada por
+
+
+$$ R = \left \{ (x,y)\in \mathbb{R}^2: 0 \leq y \leq x \leq 1\right \} $$
+
+
+Então,
+
+$$ P[(X,Y)\in R] = \int \int_{R}^{ } f(x,y) dxdy = \int_{0}^{1}\int_{0}^{x} \frac{1}{2} xy \, dydx = 0,0625 $$
+Logo, podemos concluir que em somente 6,25% dos casos a prova como um todo é
+entregue em no máximo 1 hora. 
+______________________________________________________________________
+
